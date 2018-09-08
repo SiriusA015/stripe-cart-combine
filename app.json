@@ -1,0 +1,24 @@
+{
+    "name": "expressCart",
+    "description": "A fully functioning Node.js shopping cart with Stripe, PayPal and Authorize.net payments.",
+    "repository": "https://github.com/mrvautin/expressCart",
+    "logo": "https://raw.githubusercontent.com/mrvautin/expressCart/master/public/images/logo.png",
+    "keywords": [
+        "Shopping cart",
+        "express",
+        "mongodb",
+        "nodejs",
+        "ecommerce",
+        "paypal",
+        "stripe",
+        "authorize.net",
+        "blockonomics",
+        "adyen",
+        "instore",
+        "lunr",
+        "cart",
+        "shopping",
+        "payway",
+        "westpac"
+      ]
+}

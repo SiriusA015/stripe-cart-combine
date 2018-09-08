@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+        {{~#if config.injectJs}}{{{config.injectJs}}}{{/if}}
+		<title>{{title}}</title>
+	    <meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        {{#if admin}}
+        <link rel="icon" type="image/png" href="/images/favicon.png" />
+        <!--[if IE]><link rel="SHORTCUT ICON" href="/images/favicon.png"/><![endif]-->
+        {{else}}
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <!--[if IE]><link rel="SHORTCUT ICON" href="/favicon.ico"/><![endif]-->
+        {{/if}}
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        {{#if productDescription}}
+        <meta name="description" content="{{snip productDescription}}">
+        {{else}}
+        {{#if metaDescription}}
+        <meta name="description" content="{{snip metaDescription}}">
+        {{else}}
+        <meta name="description" content="{{snip config.cartDescription}}">
+        {{/if}}
+        {{/if}}
+        <meta name="csrfToken" content="{{csrfToken}}">
+		<meta name="keywords" content="{{config.cartTitle}}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha256-L/W5Wfqfa0sdBNIKN9cG6QA5F2qx4qICmU2VgLruv9Y=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="/stylesheets/pushy{{config.env}}.css">
+        {{#if admin}}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.13/combined/css/gijgo.min.css" integrity="sha256-bH0WSMuCFoG/dxeox/5aOWmaZl729yDg4ylckwSRTfU=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.20.2/codemirror.min.css" integrity="sha256-MdzaXfGXzZdeHw/XEV2LNNycipsLk4uZ0FYzO3hbuvI=" crossorigin="anonymous" />
+        {{/if}}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/css/bootstrap-tokenfield.min.css" integrity="sha256-4qBzeX420hElp9/FzsuqUNqVobcClz1BjnXoxUDSYQ0=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="/stylesheets/codemirror-style.min.css">
+        <link rel="stylesheet" href="/stylesheets/style{{config.env}}.css">
+        {{#if admin}}
+        <link rel="stylesheet" href="/stylesheets/admin{{config.env}}.css">
+        {{/if}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" integrity="sha256-x3YZWtRjM8bJqf48dFAv/qmgL68SI4jqNWeSLMZaMGA=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha256-WqU1JavFxSAMcLP2WIOI+GB2zWmShMI82mTpLDcqFUg=" crossorigin="anonymous"></script>
+        {{#if admin}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.13/combined/js/gijgo.min.js" integrity="sha256-YZhUu69bCn9uTqQyKwwQ3GyRypS7eaxp/wmVS282sDI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.20.2/codemirror.min.js" integrity="sha256-K1exjHe1X4MP24jRizgBaSbUDUrNhFDRSwGoEYGmtJE=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.20.2/mode/css/css.min.js" integrity="sha256-D5oJ11cOmRhXSYWELwG2U/XYH3YveZJr9taRYLZ2DSM=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.20.2/mode/xml/xml.min.js" integrity="sha256-ERFGS58tayDq5kkyNwd/89iZZ+HglMH7eYXxG1hxTvA=" crossorigin="anonymous"></script>
+        {{/if}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.25.0/feather.min.js" integrity="sha256-NvgyqkM9Vu1DLHkzxTxXQxZNdDymUlwhXcSJEqUfPiU=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js" integrity="sha256-LlHVI5rUauudM5ZcZaD6hHPHKrA7CSefHHnKgq+/AZc=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.7/js/tether.min.js" integrity="sha256-4lietOiwRDBKx1goZZbRiwB06L+/bPYEGDIKZt82bgg=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+        <script src="/javascripts/jquery.bootpag.min.js"></script>
+        <script src="/javascripts/cssbeautify.min.js"></script>
+        <script src="/javascripts/common{{config.env}}.js"></script>
+		<script src="/javascripts/expressCart{{config.env}}.js"></script>
+        {{#if admin}}
+        <script src="/javascripts/admin{{config.env}}.js"></script>
+        {{/if}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.min.js" integrity="sha256-jdwX0QzXB7z7Xc7Vz0ovtIHWO5qIZWg0aLcGv44JDgE=" crossorigin="anonymous"></script>
+        <!-- SEO data -->
+        {{#if pageUrl}}
+        <link rel="canonical" href="{{pageUrl}}" />
+        {{else}}
+        <link rel="canonical" href="{{config.baseUrl}}" />
+        {{/if}}
+        <meta name="referrer" content="origin" />
+        {{#if @root.config.facebookAppId}}
+        <meta property="fb:app_id" content="{{@root.config.facebookAppId}}" />
+        {{/if}}
+        <meta property="og:site_name" content="{{config.cartTitle}}" />
+        {{#if result.productTitle}}
+        <meta property="og:type" content="product" />
+        {{else}}
+        <meta property="og:type" content="website" />
+        {{/if}}
+        <meta property="og:title" content="{{title}}" />
+        {{#if pageUrl}}
+        <meta property="og:url" content="{{pageUrl}}" />
+        {{else}}
+        <meta property="og:url" content="{{config.baseUrl}}" />
+        {{/if}}
+        {{#if result.productImage}}
+        <meta property="og:image" content="{{imagePath result.productImage}}" />
+        {{/if}}
+        {{#if productDescription}}
+        <meta property="og:description" content="{{snip productDescription}}">
+        {{else}}
+        {{#if metaDescription}}
+        <meta property="og:description" content="{{snip metaDescription}}">
+        {{else}}
+        <meta property="og:description" content="{{snip config.cartDescription}}">
+        {{/if}}
+        {{/if}}
+        {{#if @root.config.twitterHandle}}
+        <meta property="twitter:site" content="{{@root.config.twitterHandle}}">
+        {{/if}}
+        {{#if result.productTitle}}
+        <meta property="twitter:card" content="product" />
+        {{else}}
+        <meta property="twitter:card" content="summary" />
+        {{/if}}
+        <meta property="twitter:title" content="{{title}}" />
+        {{#if pageUrl}}
+        <meta property="twitter:url" content="{{pageUrl}}" />
+        {{else}}
+        <meta property="twitter:url" content="{{config.baseUrl}}" />
+        {{/if}}
+        {{#if result.productTitle}}
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org/",
+                "@type": "Product",
+                "name": "{{result.productTitle}}",
+                "offers": {
+                    "price": "{{result.productPrice}}",
+                    "priceCurrency": "{{config.currencyISO}}",
+                    {{#ifCond result.productStock '>' 0}}
+                    "availability": "https://schema.org/InStock",
+                    {{else}}
+                    "availability": "https://schema.org/SoldOut",
+                    {{/ifCond}}
+                    "url": "{{pageUrl}}"
+                },
+                "sku": "{{result._id}}",
+                {{#if result.productGtin}}
+                "gtin": "{{result.productGtin}}",
+                {{/if}}
+                {{#if result.productImage}}
+                "image": "{{imagePath result.productImage}}",
+                {{else}}
+                "image": "{{config.baseUrl}}uploads/placeholder.png",
+                {{/if}}
+                {{#if result.productBrand}}
+                "brand": {
+                    "@type": "Organization",
+                    "name": "{{result.productBrand}}"
+                },
+                {{/if}}
+                {{#ifCond reviews.count '>' 0}}
+                "review": {
+                    "@type": "Review",
+                    "reviewRating": {
+                        "@type": "Rating",
+                        "ratingValue": "{{@root.reviews.featured.review.rating}}",
+                        "bestRating": "{{@root.reviews.highestRating}}"
+                    },
+                    "author": {
+                        "@type": "Person",
+                        "name": "{{@root.reviews.featured.customer.firstName}} {{@root.reviews.featured.customer.lastName}}"
+                    }
+                },
+                {{/ifCond}}
+                {{#if @root.reviews.count}}
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "{{@root.reviews.average}}",
+                    "reviewCount": "{{@root.reviews.count}}"
+                },
+                {{/if}}
+                {{#if productDescription}}
+                "description": "{{snip productDescription}}",
+                {{/if}}
+                {{#if pageUrl}}
+                "url": "{{pageUrl}}"
+                {{else}}
+                "url": "{{config.baseUrl}}"
+                {{/if}}
+            }
+        </script>
+        {{/if}}
+        <!-- SEO data -->
+        {{~#if config.googleAnalytics}}{{{config.googleAnalytics}}}{{/if}}
+        {{~#if config.customCss}}<style>{{{config.customCss}}}</style>{{/if}}
+        {{#if admin}}
+        <link rel="stylesheet" href="/stylesheets/admin{{config.env}}.css">
+        {{else}}
+        {{#if config.theme}}
+        <link rel="stylesheet" href="/{{config.theme}}/style{{config.env}}.css">
+        <script src="/{{config.theme}}/index{{config.env}}.js"></script>
+        {{/if}}
+        {{/if}}
+	</head>
+    {{#if admin}}
+	<body class="admin">
+    {{else}}
+    <body>
+    {{/if}}
+        {{#unless admin}}
+        <nav class="navbar navbar-expand-lg justify-content-between mainNavBar">
+            <a class="navbar-brand" href="/">
+            {{#if @root.config.cartLogo}}
+            <img src="{{@root.config.cartLogo}}" class="img-fluid">
+            {{else}}
+            {{@root.config.cartTitle}}
+            {{/if}}
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                {{{feather 'menu'}}}
+            </button>
+            <div id="navbarText">
+                <ul class="navbar-nav ml-auto">
+                    {{#ifCond @root.config.enableLanguages "!=" false}}
+                    <div class="dropdown d-none d-sm-block">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{{feather 'globe'}}}
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            {{#availableLanguages}}
+                                <li><a class="dropdown-item" href="/lang/{{this}}">{{@root.__ this}}</a></li>
+                            {{/availableLanguages}}
+                        </div>
+                    </div>
+                    {{/ifCond}}
+                    {{#if @root.session.customerPresent}}
+                    <div class="dropdown d-none d-sm-block">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{{feather 'user'}}}
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="/customer/account">Account</a></li>
+                            <li><a class="dropdown-item" href="/customer/logout">Logout</a></li>
+                        </div>
+                    </div>
+                    {{else}}
+                        <li class="nav-item ml-3"><a href="/customer/account" class="btn">{{{feather 'user'}}}</a></li>
+                    {{/if}}
+                    {{#if @root.session.cart}}
+                        <li class="nav-item"><a href="/checkout/cart" class="btn menu-btn">{{{feather 'shopping-cart'}}} {{ @root.__ "Cart" }} <span class="badge badge-danger" id="cart-count">{{@root.session.totalCartItems}}</span></a></li>
+                        {{else}}
+                        <li class="nav-item"><a href="/checkout/cart" class="btn menu-btn">{{{feather 'shopping-cart'}}}</i> {{ @root.__ "Cart" }} <span class="badge badge-danger" id="cart-count">0</span></a></li>
+                    {{/if}}
+                </ul>
+            </div>
+        </nav>
+        {{/unless}}
+        <div class="site-overlay"></div>
+        {{#unless admin}}
+            {{#ifCond page '!=' 'checkout'}}
+            {{#ifCond page '!=' 'pay'}}
+                <div id="cart" class="col-md-12 pad-left-12 top-pad-10 pushy pushy-right">
+                    <div class="row {{checkout}}">
+                        <div class="col-sm-12 text-right">
+                            <button class="pushy-link btn btn-primary" type="button">{{{feather 'x'}}}</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="cart" class="col-md-12">
+                        {{> (getTheme 'cart')}}
+                        <div class="row">
+                        <div class="col-sm-12 {{showCartButtons @root.session.cart}} cart-buttons">
+                            <button class="btn btn-danger float-left" id="empty-cart" type="button">{{ @root.__ "Empty cart" }}</button>
+                            <a href="/checkout/information" class="btn btn-primary float-right">Checkout</a>
+                        </div>
+                    </div>
+                        </div>
+                    </div>
+                </div>
+            {{/ifCond}}
+            {{/ifCond}}
+        {{/unless}}
+		<div class="container-fluid content-body h-100" id="container">
+            <div class="row">
+                {{{body}}}
+            </div>
+		</div>
+		<input type="hidden" id="input_notify_message" value="{{message}}">
+		<input type="hidden" id="input_notify_messageType" value="{{messageType}}">
+        <input type="hidden" id="baseUrl" value="{{config.baseUrl}}">
+        <input type="hidden" id="cartCheckout" value="{{checkout}}">
+        <input type="hidden" id="cartTheme" value="{{@root.config.theme}}">
+        <input type="hidden" id="currencySymbol" value="{{@root.config.currencySymbol}}">
+        {{#if @root.config.maxQuantity}} <input type="hidden" id="maxQuantity" value="{{@root.config.maxQuantity}}">{{/if}}
+		<div id="notify_message"></div>
+		{{#if showFooter}}
+            <div class="footer">
+                <div class="d-flex h-100">
+                    <div class="col-12 align-self-center">
+                    {{#isNull @root.config.footerHtml}}
+                        <h5 class="text-center">Powered by expressCart</h5>
+                    {{else}}
+                        {{{@root.config.footerHtml}}}
+                    {{/isNull}}
+                    </div>
+                </div>
+            </div>
+		{{/if}}
+        <script src="/javascripts/pushy.min.js"></script>
+        {{#if admin}}
+        {{> partials/globalSearchModal}}
+        {{> partials/validationModal}}
+        {{> partials/variantModal}}
+        {{> partials/variantEditModal}}
+        {{/if}}
+        {{> partials/confirmModal}}
+        {{#if @root.config.modules.enabled.reviews}}
+        {{> partials/reviewModal}}
+        {{/if}}
+        <script>
+            feather.replace();
+        </script>
+	</body>
+</html>

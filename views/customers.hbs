@@ -1,0 +1,64 @@
+{{> partials/menu}}
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <div class="col-sm-12">
+        <h2>Customers</h2>
+    </div>
+    <div class="col-sm-12 search_bar">
+        <div class="input-group">
+            <input type="text" name="customer_filter" id="customer_filter" class="form-control" placeholder="Filter customers">
+            <div class="input-group-append">
+                <button type="button" class="btn btn-outline-success" id="btn_customer_filter">Filter</button>
+                <a href="/admin/customers" class="hidden-xs btn btn-outline-warning">{{{feather 'x-octagon'}}}</a>
+            </div>
+        </div>
+        <p class="text-warning top-pad-10">{{ @root.__ "Customers can be filtered by: email, name or phone number" }}</p>
+    </div>
+    {{#if customers}}
+        <div class="col-sm-12">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <strong>
+                        {{ @root.__ "Customers" }}
+                        {{#if searchTerm}}
+                            - <span class="text-danger">{{ @root.__ "Filtered term" }}: {{searchTerm}} </span>
+                        {{/if}}
+                    </strong>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="text-info"><strong>{{ @root.__ "Email address" }}</strong></div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="text-info"><strong>{{ @root.__ "Name" }}</strong></div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="text-info"><strong>{{ @root.__ "Phone number" }}</strong></div>
+                        </div>
+                    </div>
+                </li>
+                {{#each customers}}
+                    <li class="list-group-item">
+                        <a href="/admin/customer/view/{{this._id}}">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="">{{this.email}}</div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="">{{this.firstName}} {{this.lastName}}</div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="">{{this.phone}}</div>
+                                </div>
+                            </div>
+                        </a>  
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    {{else}}
+    <h4 class="text-center">
+        {{ @root.__ "No orders found" }}
+    </h4>
+    {{/if}}
+</main>

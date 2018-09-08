@@ -1,0 +1,22 @@
+<div class="col-md-4 offset-md-4 top-pad-50">
+	<form class="form-signin" id="userSetupForm" role="form" data-toggle="validator">
+		<h2 class="form-signin-heading text-center">expressCart Setup</h2>
+        <div class="form-group">
+	    	<label for="usersName">{{ @root.__ "Users name" }} *</label>
+	    	<input type="text" class="form-control" id="usersName" placeholder="{{ @root.__ "Users name" }}" required>
+	  	</div>
+		<div class="form-group">
+	    	<label for="userEmail">{{ @root.__ "User email" }} *</label>
+	    	<input type="email" class="form-control" id="userEmail" placeholder="{{ @root.__ "Email address" }}"  required>
+	  	</div>
+	  	<div class="form-group">
+		    <label for="userPassword">{{ @root.__ "User password" }} *</label>
+		    <input type="password" class="form-control" id="userPassword" placeholder="Password" required>
+	  	</div>
+	  	<div class="form-group">
+		    <label for="frm_userPassword_confirm">{{ @root.__ "Password confirm" }} *</label>
+		    <input type="password" data-match="#userPassword" placeholder="Confirm password" class="form-control" id="frm_userPassword_confirm" name="frm_userPassword_confirm" required>
+	  	</div>
+		<button class="btn  btn-outline-primary btn-block" type="submit">{{ @root.__ "Complete setup" }}</button>
+	</form>
+</div>
